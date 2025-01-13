@@ -1,6 +1,5 @@
 {% set name = "coreapi-cli" %}
 {% set version = "1.0.9" %}
-{% set sha256 = "d76b5320ea9ad04d922001ac8897b903a7a359c08a53822f819134c50aa22c5f" %}
 
 package:
   name: {{ name|lower }}
@@ -8,16 +7,17 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: d76b5320ea9ad04d922001ac8897b903a7a359c08a53822f819134c50aa22c5f
 
 build:
   noarch: python
   number: 1
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - python {{ python_min }}
+    - setuptools
     - pip
   run:
     - python >={{ python_min }}
